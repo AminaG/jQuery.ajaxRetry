@@ -49,19 +49,18 @@ $.ajax({
     });
 ```
 
-## Allow default to all ajax requests
+## Add retry logic for all ajax requests
 
-In this example, there is default retry to all ajax requests, for 5 seconds between retries
+Add logic to retry all failed requests with a 5 second delay:
 
-      $.ajaxSettings.
-            shouldRetry= function() {
+      $.ajaxSettings.shouldRetry = function() {
                 // Always retry this request with a delay of 250ms between retries
                 return $.Deferred(function(dfr) {
                     setTimeout(function() {
                         dfr.resolve(true);
                     }, 5000);
                 }).promise();
-            }
+            };
 
 ## License
 Copyright (c) 2014 Daniel Herman, contributors Licensed under the MIT license.
